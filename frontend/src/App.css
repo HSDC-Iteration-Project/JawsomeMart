@@ -1,8 +1,8 @@
-* {
-  /* border: 1px dotted lightgray; */
-}
+/* * {
+  /* border: 1px dotted lightgray; 
+} */
 
-.appContainer{
+.appContainer {
   margin: 0 auto; /* Center the container */
   padding-top: 30px;
   box-sizing: border-box; /* Ensure padding and border are included in the total width and height */
