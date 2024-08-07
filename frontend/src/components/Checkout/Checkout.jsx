@@ -15,7 +15,7 @@ const ProductDisplay = () => (
       <h5 className={styles.h5} >$20.00</h5>
       </div>
     </div>
-    <form action="/create-checkout-session" method="POST">
+    <form action="/api/create-checkout-session" method="POST">
       <button className = {styles.button} type="submit">
         Checkout
       </button>

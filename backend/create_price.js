@@ -6,7 +6,7 @@ stripe.products.create({
   description: '$12/Month subscription',
 }).then(product => {
   stripe.prices.create({
-    unit_amount: 1200,
+    unit_amount: 1500,
     currency: 'usd',
     recurring: {
       interval: 'month',
