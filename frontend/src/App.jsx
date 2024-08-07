@@ -16,8 +16,10 @@ export const AuthedUserContext = createContext(null);
 function App() {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(authService.getUser()); // look for an active user
+  const ThemeContext = createContext();
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
+  const [user, setUser] = useState(authService.getUser()); // look for an active user
   const handleSignout = () => {
     authService.signout();
     setUser(null);
@@ -29,13 +31,14 @@ function App() {
       navigate('/');
     }
   }, [user]);
-
+  
   return (
     <>
+
       <AuthedUserContext.Provider value={user}>
         {/* <Navbar handleSignout={handleSignout}/> */}
-        <Navbar handleSignout={handleSignout} />
-        <div className='appContainer'>
+        <Navbar handleSignout={handleSignout}/>
+        <div className="appContainer">
           <Routes>
             {user ? (
               <>
@@ -54,6 +57,7 @@ function App() {
             )}
           </Routes>
         </div>
+        </ThemeContext.Provider>
       </AuthedUserContext.Provider>
     </>
   );
