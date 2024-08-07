@@ -14,7 +14,7 @@ import * as authService from '../src/services/authService'
 import './App.css';
 
 
-export const AuthedUserContext = createContext(null);
+export const AuthedUserContext = createContext();
 
 
 function App() {
