@@ -7,9 +7,12 @@ const db = require('./config/db.js');
 const productsRoutes = require('./routes/productRoutes.js');
 const userRoutes = require('./routes/userRoutes.js');
 const cartRoutes = require('./routes/cartRoutes.js');
+const checkoutRoutes = require('./routes/checkoutRoutes.js');
 
 db();
+app.use(express.static('public'));
 app.use(express.json());
+app.use('/api/checkout', checkoutRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/api', productsRoutes);
