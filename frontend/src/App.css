@@ -3,11 +3,86 @@
 @tailwind utilities;
 
 * {
-  /* border: 1px dotted lightgray; */
+  color: inherit;
+}
+
+
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --border-color: #e5e7eb; 
+  --base-color: rgb(138, 23, 23); 
+  --base-variant: #e8e9ed; 
+  --text-color:#111528; 
+  --secondary-text: #232738; 
+  --primary-color:#3a435d; 
+  --accent-color: #0071ff; 
+}
+
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#theme-switch {
+  height: 30px;
+  width: 30px;
+  padding: 7px;
+  border-radius: 50%;
+  background-color: var(--base-variant);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: fixed;
+  top: 10px;
+  right: 35%;
+  position: sticky;
+}
+
+
+#theme-switch svg {
+  fill: var(--primary-color)
+}
+
+#theme-switch svg:last-child{
+  display:none;
+}
+
+.darkmode #theme-switch svg:first-child{
+  display:none;
+}
+
+.darkmode #theme-switch svg:last-child{
+  display:block;
+}
+
+.darkmode {
+  --background-color: #050000 !important;
+  --text-color: #897d9f;
+  --border-color: #444444;
+  --base-variant: #555555;
+  --primary-color: #ffffff;
+  --accent-color: #00bfff;
+  background-color: var(--background-color) !important;
+}
+
+body.darkmode {
+  background-color: var(--background-color)
 }
 
 .appContainer {
-  margin: 0 auto; /* Center the container */
+  margin: 0 auto; /* Center the container
   padding-top: 30px;
   box-sizing: border-box; /* Ensure padding and border are included in the total width and height */
+} 
+
+body.darkmode .product-display {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+div.product-box {
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
