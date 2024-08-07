@@ -17,6 +17,7 @@ checkoutController.checkout = async (req, res, next) => {
             success_url: `${YOUR_DOMAIN}/success`,
             cancel_url: `${YOUR_DOMAIN}/cart`,
         });
+        
         res.redirect(303, session.url); // redirects user to stripe hosted payment page
         next();
     } catch(err) {

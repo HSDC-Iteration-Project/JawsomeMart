@@ -33,7 +33,7 @@ const Product = (props) => {
 
 
             <h4>
-                ${props.price} USD
+                ${props.price.toFixed(2)} USD
                 <button onClick={ addProductToCart }>
                     Add to Cart
                 </button>

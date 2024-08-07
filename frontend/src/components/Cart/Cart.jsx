@@ -54,13 +54,6 @@ function Cart() {
     }
   }
 
-  //handleCheckout is no irrelavent with the place order button routing back to stripeapi's page
-  // const handleCheckout = () => {
-  //   cartService.order(cart);
-  //   setOrderPlacedMessage('Your order has been placed!');
-  //   setCart([])
-  // }
-
   return (
     <>
       <div className={styles.cartContainer}>
@@ -80,7 +73,7 @@ function Cart() {
 
           <h2>{orderPlacedMessage}</h2>
           {cart.length > 0 &&
-            /* send request to backend to generate checkout section using stripe*/
+            /* send request to backend to generate checkout session using stripe*/
             <form action="/api/create-checkout-session" method="POST"> 
             <button type="submit">Place Order</button>
             </form>

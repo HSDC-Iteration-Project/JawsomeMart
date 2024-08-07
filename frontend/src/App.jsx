@@ -35,7 +35,7 @@ function App() {
       navigate('/')
     }
   }, [user]);
-  
+
   return (
     <>
       <AuthedUserContext.Provider value={user}>
@@ -46,7 +46,7 @@ function App() {
             {user ?  (
               <>
                 <Route path='/marketplace' element={<Marketplace />} />
-                <Route path='/cart' element={<Cart />} />
+                <Route path='/cart' element={<Cart/>} />
                 <Route path='/success' element={<Success />} />
               </> 
             ) : (

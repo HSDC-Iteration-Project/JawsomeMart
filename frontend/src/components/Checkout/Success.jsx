@@ -1,6 +1,10 @@
 import styles from './Success.module.css';
+import * as cartService from '../../services/cartService'
+
 // success component when a user has a successful payment
 const Success = () => {
+    // set cart as empty once we reach success page
+    cartService.update([]);
     return (
         <div className = {styles.body}>
             <div className={styles.container}>
