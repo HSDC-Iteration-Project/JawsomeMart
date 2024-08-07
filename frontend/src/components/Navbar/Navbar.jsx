@@ -31,14 +31,15 @@ function Navbar({handleSignout}) {
         {/* <h3>nav bar</h3> */}
         <div className={styles.navContainer}>
           <div className={styles.navLeft}>
+            <a href="/marketplace">
             <img src={logo} alt="LOGO"/>
+            </a>
           </div>
           {user ? (
           <div className={styles.navRight}>          
             
               <li><Link to='/cart'>My Cart</Link></li>
               <li><Link to="/Marketplace">Marketplace</Link></li>
-              <li><Link to='/checkout'>Checkout</Link></li>
               <li><Link to='' onClick={handleSignout}>Sign Out</Link></li>
           
           </div>

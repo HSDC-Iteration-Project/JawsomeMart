@@ -6,7 +6,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Marketplace from './components/Marketplace/Marketplace'
 import Cart from './components/Cart/Cart'
-import Checkout from './components/Checkout/Checkout';
+import Success from './components/Checkout/Success';
 import SigninForm from './components/Home/SigninForm';
 import SignupForm from './components/Home/SignupForm';
 
@@ -47,7 +47,7 @@ function App() {
               <>
                 <Route path='/marketplace' element={<Marketplace />} />
                 <Route path='/cart' element={<Cart />} />
-                <Route path='/checkout' element={<Checkout />} />
+                <Route path='/success' element={<Success />} />
               </> 
             ) : (
               <>

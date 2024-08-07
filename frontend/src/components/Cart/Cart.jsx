@@ -80,7 +80,8 @@ function Cart() {
 
           <h2>{orderPlacedMessage}</h2>
           {cart.length > 0 &&
-            <form action="/api/create-checkout-session" method="POST">
+            /* send request to backend to generate checkout section using stripe*/
+            <form action="/api/create-checkout-session" method="POST"> 
             <button type="submit">Place Order</button>
             </form>
           }
