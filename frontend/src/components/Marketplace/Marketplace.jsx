@@ -38,30 +38,31 @@ const Marketplace = () => {
         console.log('value', value);
 			axios.get(`/api/products/${value}`)
 			.then(res => {
-
+                // console.log('in specific', res.data);
 				// Function that changes the state of products array
 				setProducts(() => {
 
 						// Saves the current array in newProducts
 						const newProducts = [];
-						const arr = res.data;
+						const arr = res.data.products;
 						// Pushes product components to an array passing in data as props
 						for (let i = 0; i < arr.length; i++) {
-								const newProduct = (<Product
-										product_id={arr[i]._id}
-										id={arr[i].id}
-										title={arr[i].title}
-										price={arr[i].price} 
-										category={arr[i].category}
-										description={arr[i].description}
-										image={arr[i].image}
-										rating={arr[i].rating}
-								/>);
+							const newProduct = (<Product
+								product_id={arr[i]._id}
+								id={arr[i].id}
+								title={arr[i].title}
+								price={arr[i].price} 
+								category={arr[i].category}
+								description={arr[i].description}
+								image={arr[i].image}
+								rating={arr[i].rating}
+							/>);
 
-								// Pushes each product into allProducts array and displayedProducts arr
-								newProducts.push(newProduct);
-								// allProducts.push(newProducts);
+							// Pushes each product into allProducts array and displayedProducts arr
+							newProducts.push(newProduct);
+							// allProducts.push(newProducts);
 						}
+                        console.log('new products', newProducts);
 						return newProducts;
 				});
 		})

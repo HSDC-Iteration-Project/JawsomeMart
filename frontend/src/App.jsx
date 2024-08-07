@@ -17,7 +17,7 @@ function App() {
   const navigate = useNavigate();
 
   const ThemeContext = createContext();
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  // const [isDarkMode, setIsDarkMode] = useState(false)
 
   const [user, setUser] = useState(authService.getUser()); // look for an active user
   const handleSignout = () => {
@@ -36,7 +36,7 @@ function App() {
     <>
 
       <AuthedUserContext.Provider value={user}>
-        {/* <Navbar handleSignout={handleSignout}/> */}
+        <ThemeContext.Provider>
         <Navbar handleSignout={handleSignout}/>
         <div className="appContainer">
           <Routes>
