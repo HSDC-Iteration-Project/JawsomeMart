@@ -38,6 +38,7 @@ function Navbar({handleSignout}) {
             
               <li><Link to='/cart'>My Cart</Link></li>
               <li><Link to="/Marketplace">Marketplace</Link></li>
+              <li><Link to='/checkout'>Checkout</Link></li>
               <li><Link to='' onClick={handleSignout}>Sign Out</Link></li>
           
           </div>
