@@ -1,8 +1,6 @@
 import { useState, createContext,useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
-
-
 import Navbar from './components/Navbar/Navbar';
 import Marketplace from './components/Marketplace/Marketplace'
 import Cart from './components/Cart/Cart'
@@ -22,8 +20,10 @@ function App() {
   
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(authService.getUser()); // look for an active user
+  const ThemeContext = createContext();
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
+  const [user, setUser] = useState(authService.getUser()); // look for an active user
   const handleSignout = () => {
     authService.signout();
     setUser(null);
@@ -36,12 +36,16 @@ function App() {
     }
   }, [user]);
   
+
   return (
     <>
+
       <AuthedUserContext.Provider value={user}>
         {/* <Navbar handleSignout={handleSignout}/> */}
+        <ThemeContext.Provider value = {{ isDarkMode, setIsDarkMode}}>
         <Navbar handleSignout={handleSignout}/>
-        <div className="appContainer">
+
+        <div className={`appContainer ${isDarkMode ? 'dark-theme' : ''}`}>
           <Routes>
             {user ?  (
               <>
@@ -59,6 +63,7 @@ function App() {
             
           </Routes>
         </div>
+        </ThemeContext.Provider>
       </AuthedUserContext.Provider>
     </>
   );

@@ -5,7 +5,9 @@
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+
 */
+
 
 *,
 ::before,
@@ -16,7 +18,7 @@
   /* 2 */
   border-style: solid;
   /* 2 */
-  border-color: #e5e7eb;
+  border-color: currentColor;
   /* 2 */
 }
 
@@ -564,4 +566,68 @@ video {
   padding-top: 30px;
   box-sizing: border-box;
   /* Ensure padding and border are included in the total width and height */
+}
+
+
+.appContainer {
+  margin: 0 auto; /* Center the container */
+  padding-top: 30px;
+  box-sizing: border-box; /* Ensure padding and border are included in the total width and height */
+}
+
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --border-color: #e5e7eb; 
+  --base-color: rgb(138, 23, 23); 
+  --base-variant: #e8e9ed; 
+  --text-color:#111528; 
+  --secondary-text: #232738; 
+  --primary-color:#3a435d; 
+  --accent-color: #0071ff; 
+}
+
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#theme-switch {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--base-variant);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: fixed;
+  top: 3%;
+  right: 35%;
+}
+
+#theme-switch svg {
+  fill: var(--primary-color)
+}
+
+#theme-switch svg:last-child{
+  display:none;
+}
+
+.darkmode #theme-switch svg:first-child{
+  display:none;
+}
+
+.darkmode #theme-switch svg:last-child{
+  display:block;
+}
+
+.darkmode {
+  --background-color: #333333;
+  --text-color: #ffffff;
+  --border-color: #444444;
+  --base-variant: #555555;
+  --primary-color: #ffffff;
+  --accent-color: #00bfff;
 }
