@@ -17,7 +17,7 @@ Helper Functions
 const calculateTotal = (arr) => {
   let total = 0;
   arr.forEach((item) => {
-    total += Number(item.price) * (item.quantity || 1);
+    total += Number(item.price.toFixed(2)) * (item.quantity || 1);
   });
   return total;
 };
@@ -132,7 +132,7 @@ function Cart() {
                   </div>
                   <div className={styles.itemDetails}>
                     <p>{item.title}</p>
-                    <p>Price: ${item.price}</p>
+                    <p>Price: ${item.price.toFixed(2)}</p>
                     <></>
                     <div className='counter'>
                       Quantity:
