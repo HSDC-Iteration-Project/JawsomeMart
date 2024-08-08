@@ -94,23 +94,24 @@ function Cart() {
 
   const handleIncrement = async (id) => {
     const newCart = cart.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      item._id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
-    await cartService.add(newCart);
+    await cartService.add(id);
     console.log('what new cart looks like: ', newCart);
     setCart(newCart);
     //implementing test that cart has updated
+    console.log(id);
     const data = await cartService.index();
     console.log('new cart update: ', data);
   };
 
   const handleDecrement = async (id) => {
     const newCart = cart.map((item) =>
-      item.id === id && item.quantity > 1
+      item._id === id && item.quantity > 1
         ? { ...item, quantity: item.quantity - 1 }
         : item
     );
-    await cartService.add(newCart);
+    await cartService.add(id);
     setCart(newCart);
   };
 
@@ -163,14 +164,14 @@ function Cart() {
                     <div className={styles.counter}>
                       Quantity:
                       <button
-                        onClick={() => handleDecrement(item.id)}
+                        onClick={() => handleDecrement(item._id)}
                         className='counter-btn'
                       >
                         -
                       </button>
                       <span className='counter-value'>{item.quantity}</span>
                       <button
-                        onClick={() => handleIncrement(item.id)}
+                        onClick={() => handleIncrement(item._id)}
                         className='counter-btn'
                       >
                         +
