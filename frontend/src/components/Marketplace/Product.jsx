@@ -1,15 +1,16 @@
-// Importing required dependencies 
+// Importing required dependencies
 import * as cartService from '../../services/cartService.js';
 
 // Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap'
+import * as bootstrap from 'bootstrap';
 import { Popover } from 'bootstrap';
 
-/** 
+/**
  * This function takes properties passed from a parent and generates
  * a div to display the data
-*/
+ */
 const Product = (props) => {
+
     const objID = props.product_id;
     document.querySelectorAll('[data-bs-toggle="popover"]')
     .forEach(popover => {
@@ -51,13 +52,12 @@ const Product = (props) => {
             </h4>
 
             {/* <div className="description-box">
+
                 {props.description}
             </div> */}
-
-
-        </div>
-    )
-}
+    </div>
+  );
+};
 
 // Exports the Product constructor
 export default Product;
