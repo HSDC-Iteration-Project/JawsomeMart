@@ -33,7 +33,9 @@ function Navbar({handleSignout}) {
   useEffect(() => {
     document.body.classList.toggle('darkmode', isDarkMode)
   }, [isDarkMode]);
-
+  // const toggleTheme = () => {
+  //   setIsDarkMode(prevMode => !prevMode);
+  // }
 
   /*--------------- Return ---------------*/
 

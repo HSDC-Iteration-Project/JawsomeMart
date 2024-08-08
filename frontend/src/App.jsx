@@ -11,13 +11,15 @@ import SignupForm from './components/Home/SignupForm';
 import * as authService from '../src/services/authService';
 import './App.css';
 
+// add passport requirements
+
 export const AuthedUserContext = createContext(null);
 
 function App() {
   const navigate = useNavigate();
 
   const ThemeContext = createContext();
-  // const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   const [user, setUser] = useState(authService.getUser()); // look for an active user
   const handleSignout = () => {
@@ -34,7 +36,7 @@ function App() {
 
   return (
     <>
-
+      {/* <ThemeContext.Provider> */}
       <AuthedUserContext.Provider value={user}>
         <ThemeContext.Provider>
         <Navbar handleSignout={handleSignout}/>
@@ -59,6 +61,7 @@ function App() {
         </div>
         </ThemeContext.Provider>
       </AuthedUserContext.Provider>
+      {/* </ThemeContext.Provider> */}
     </>
   );
 }
