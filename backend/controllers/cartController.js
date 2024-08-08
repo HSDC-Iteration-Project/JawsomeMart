@@ -71,7 +71,10 @@ cartController.removeItem = async (req, res, next) => {
   try {
     const userId = req.user.id;
     // update cart --> removing item because we're assigning req.body to be equal to cart without the elements we want and updating DB
-    const cartExists = await Cart.findOneAndUpdate({ user_id: userId }, {products: req.body});
+    const cartExists = await Cart.findOneAndUpdate(
+      { user_id: userId },
+      { products: req.body }
+    );
 
     if (cartExists) {
       await cartExists.save();

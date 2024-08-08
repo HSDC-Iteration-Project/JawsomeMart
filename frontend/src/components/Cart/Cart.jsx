@@ -106,20 +106,20 @@ function Cart() {
 
   const handleDecrement = async (id) => {
     const newCart = cart.map((item) =>
-      item._id === id && item.quantity > 1
+      item.id === id && item.quantity > 1
         ? { ...item, quantity: item.quantity - 1 }
         : item
     );
-    cartService.update(newCart);
     setCart(newCart);
-  };
 
-  //handleCheckout is no irrelavent with the place order button routing back to stripeapi's page
-  // const handleCheckout = () => {
-  //   cartService.order(cart);
-  //   setOrderPlacedMessage('Your order has been placed!');
-  //   setCart([])
-  // }
+    const data = await cartService.index();
+    const index = data.products.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      const newCartCount = [...data.products];
+      newCartCount.splice(index, 1);
+      await cartService.update(newCartCount);
+    }
+  };
 
   return (
     <>
@@ -163,7 +163,7 @@ function Cart() {
                     <div className={styles.counter}>
                       Quantity:
                       <button
-                        onClick={() => handleDecrement(item._id)}
+                        onClick={() => handleDecrement(item.id)}
                         className='counter-btn'
                       >
                         -
