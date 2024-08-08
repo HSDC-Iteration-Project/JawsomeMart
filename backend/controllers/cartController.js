@@ -17,8 +17,8 @@ cartController.createCart = async (req, res, next) => {
 };
 //66b0f72b14fdaeafe0b10927
 cartController.addCart = async (req, res, next) => {
+  console.log('id of the user: ', req.body);
   try {
-    console.log('id of the user: ', req);
     const userId = req.user.id;
     const productId = req.body.id;
     const cartExists = await Cart.findOne({ user_id: userId });

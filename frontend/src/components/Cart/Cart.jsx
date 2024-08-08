@@ -69,6 +69,8 @@ function Cart() {
       }));
       const consolidatedCart = consolidateCart(cartWithQuantities);
       setCart(consolidatedCart);
+      console.log('consolidated cart: ', consolidatedCart);
+      console.log('This is the cart: ', cart);
       setCartTotal(calculateTotal(consolidatedCart));
       setNumItems(calculateTotalQuantity(consolidatedCart));
       // setCart(data.products);
@@ -83,6 +85,7 @@ function Cart() {
   }, [cart]);
 
   const removeItem = (id) => {
+    console.log("I'm here with id: ", id);
     const index = cart.findIndex((item) => item.id === id);
     if (index !== -1) {
       const newCart = [...cart];
@@ -96,13 +99,9 @@ function Cart() {
     const newCart = cart.map((item) =>
       item._id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
-    await cartService.add(id);
+    await cartService.add({ id: id });
     console.log('what new cart looks like: ', newCart);
     setCart(newCart);
-    //implementing test that cart has updated
-    console.log(id);
-    const data = await cartService.index();
-    console.log('new cart update: ', data);
   };
 
   const handleDecrement = async (id) => {
@@ -111,7 +110,7 @@ function Cart() {
         ? { ...item, quantity: item.quantity - 1 }
         : item
     );
-    await cartService.add(id);
+    cartService.update(newCart);
     setCart(newCart);
   };
 
