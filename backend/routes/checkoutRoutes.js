@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const {checkout} = require('../controllers/checkoutController');
+const {createPrice, checkout} = require('../controllers/checkoutController');
 
-router.post('/', checkout, (req, res) => {
+router.post('/', createPrice, checkout, (req, res) => {
     res.status(200);
 })
 
