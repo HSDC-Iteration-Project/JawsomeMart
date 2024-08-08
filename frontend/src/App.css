@@ -25,6 +25,12 @@ body {
   color: var(--text-color);
 }
 
+#gitButton {
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
 #theme-switch {
   height: 30px;
   width: 30px;
@@ -72,9 +78,14 @@ body.darkmode {
 }
 
 .appContainer {
-  margin: 0 auto; /* Center the container
+  margin: 0 auto;
   padding-top: 30px;
-  box-sizing: border-box; /* Ensure padding and border are included in the total width and height */
+  justify-content: center;
+  box-sizing: border-box; 
+  text-align: center;
+  align-items: center;
+  height:100vh;
+
 } 
 
 body.darkmode .product-display {
@@ -86,3 +97,4 @@ div.product-box {
   background-color: var(--background-color);
   color: var(--text-color);
 }
+
