@@ -30,6 +30,25 @@ const calculateTotalQuantity = (arr) => {
   return totalQuantity;
 };
 
+const consolidateCart = (cart) => {
+  const consolidatedCart = [];
+  const itemMap = {};
+
+  cart.forEach((item) => {
+    if (itemMap[item.id]) {
+      itemMap[item.id].quantity += item.quantity;
+    } else {
+      itemMap[item.id] = { ...item };
+    }
+  });
+
+  for (let key in itemMap) {
+    consolidatedCart.push(itemMap[key]);
+  }
+
+  return consolidatedCart;
+};
+
 /* =======================================================
 Component
 =======================================================*/
@@ -48,9 +67,10 @@ function Cart() {
         ...item,
         quantity: item.quantity || 1,
       }));
-      setCart(cartWithQuantities);
-      setCartTotal(calculateTotal(cartWithQuantities));
-      setNumItems(calculateTotalQuantity(cartWithQuantities));
+      const consolidatedCart = consolidateCart(cartWithQuantities);
+      setCart(consolidatedCart);
+      setCartTotal(calculateTotal(consolidatedCart));
+      setNumItems(calculateTotalQuantity(consolidatedCart));
       // setCart(data.products);
       // setCartTotal(calculateTotal(data.products));
     };
@@ -72,19 +92,25 @@ function Cart() {
     }
   };
 
-  const handleIncrement = (id) => {
+  const handleIncrement = async (id) => {
     const newCart = cart.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
+    await cartService.add(newCart);
+    console.log('what new cart looks like: ', newCart);
     setCart(newCart);
+    //implementing test that cart has updated
+    const data = await cartService.index();
+    console.log('new cart update: ', data);
   };
 
-  const handleDecrement = (id) => {
+  const handleDecrement = async (id) => {
     const newCart = cart.map((item) =>
       item.id === id && item.quantity > 1
         ? { ...item, quantity: item.quantity - 1 }
         : item
     );
+    await cartService.add(newCart);
     setCart(newCart);
   };
 
@@ -134,7 +160,7 @@ function Cart() {
                     <p>{item.title}</p>
                     <p>Price: ${item.price.toFixed(2)}</p>
                     <></>
-                    <div className='counter'>
+                    <div className={styles.counter}>
                       Quantity:
                       <button
                         onClick={() => handleDecrement(item.id)}
