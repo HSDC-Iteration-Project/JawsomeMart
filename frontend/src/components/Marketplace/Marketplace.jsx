@@ -70,8 +70,8 @@ const Marketplace = () => {
 		})
     }
 		// Function that sends a "GET" request to the DB to fetch product data
-    const getComponents = (value) => {
-      console.log('value getcomponents', value);
+    const getComponents = () => {
+      // console.log('value getcomponents', value);
         // Sends a "GET" request for products stored in db
         axios.get('/api/products')
           .then(res => {

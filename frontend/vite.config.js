@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,4 +19,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './test/setup.js', // assuming the test folder is in the root of our project
   },
+  alias: {
+    '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
+  }
 });
