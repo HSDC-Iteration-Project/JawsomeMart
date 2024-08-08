@@ -59,7 +59,7 @@ function Cart() {
   const [orderPlacedMessage, setOrderPlacedMessage] = useState('');
   const [numItems, setNumItems] = useState(0);
   // const [quantity, setQuantity] = useState(0);
-  const actionUrl = `/api/create-checkout-session?cartTotal=${(cartTotal * 1.05).toFixed(2)}&numCartItems=${cart.length}` // for stripe form request to backend, triggered on button click place order
+  const actionUrl = `/api/create-checkout-session?cartTotal=${(cartTotal * 1.05).toFixed(2)}&numCartItems=${numItems}` // for stripe form request to backend, triggered on button click place order
 
   useEffect(() => {
     const fetchCart = async () => {

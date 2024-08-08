@@ -17,3 +17,8 @@ stripe.products.create({
     console.log('Success! Here is your starter subscription price id: ' + price.id);
   });
 });
+
+// test file for pulling products from fakestoreapi
+// fetch('https://fakestoreapi.com/products?limit=50')
+//             .then(res=>res.json())
+//             .then(json=>console.log(json))
