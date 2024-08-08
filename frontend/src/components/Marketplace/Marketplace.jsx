@@ -138,6 +138,24 @@ const Marketplace = () => {
         >
           Electronics
         </button>
+        <button
+          value='Cologne'
+          onClick={() => {
+            setValue('cologne');
+          }}
+        >
+          {' '}
+          Cologne{' '}
+        </button>
+        <button
+          value='Sunglasses'
+          onClick={() => {
+            setValue('sunglasses');
+          }}
+        >
+          {' '}
+          Sunglasses{' '}
+        </button>
       </nav>
       <div className='product-display'>{displayedProducts}</div>
     </div>
