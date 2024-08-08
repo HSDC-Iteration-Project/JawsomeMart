@@ -22,14 +22,15 @@ const Marketplace = () => {
     const [displayedProducts, setProducts] = useState([]);
     const [value, setValue] = useState('');
 
-			// Calls the getComponents function so we can render the products
-			useEffect(() => {
-				console.log("hit")
-					getComponents();
-			}, []);
-
 		//holds category type
-		useEffect( () => getSpecificComponents(value), [value])
+		useEffect( () => {
+			if (value) {
+				getSpecificComponents(value);
+			} else {
+				getComponents()
+			}
+		}, 
+		[value])
     // Creates a new array to hold all products returned from db
     // const allProducts = [];
 
@@ -38,13 +39,14 @@ const Marketplace = () => {
         console.log('value', value);
 			axios.get(`/api/products/${value}`)
 			.then(res => {
-                // console.log('in specific', res.data);
+
 				// Function that changes the state of products array
 				setProducts(() => {
 
 						// Saves the current array in newProducts
 						const newProducts = [];
-						const arr = res.data.products;
+						const arr = res.data;
+
 						// Pushes product components to an array passing in data as props
 						for (let i = 0; i < arr.length; i++) {
 							const newProduct = (<Product
@@ -62,49 +64,48 @@ const Marketplace = () => {
 							newProducts.push(newProduct);
 							// allProducts.push(newProducts);
 						}
-                        console.log('new products', newProducts);
+                        console.log('new products get specific', newProducts);
 						return newProducts;
 				});
 		})
     }
 		// Function that sends a "GET" request to the DB to fetch product data
-    const getComponents = (value) => {
-        console.log('value', value);
+    const getComponents = () => {
+      // console.log('value getcomponents', value);
         // Sends a "GET" request for products stored in db
         axios.get('/api/products')
-            .then(res => {
+          .then(res => {
 
-                // Function that changes the state of products array
-                setProducts(() => {
+            // Function that changes the state of products array
+            setProducts(() => {
 
-                    // Saves the current array in newProducts
-                    const newProducts = [];
-                    const arr = res.data;
-                    // Pushes product components to an array passing in data as props
-                    for (let i = 0; i < arr.length; i++) {
-                        const newProduct = (<Product
-                            product_id={arr[i]._id}
-                            id={arr[i].id}
-                            title={arr[i].title}
-                            price={arr[i].price} 
-                            category={arr[i].category}
-                            description={arr[i].description}
-                            image={arr[i].image}
-                            rating={arr[i].rating}
-                        />);
+              // Saves the current array in newProducts
+              const newProducts = [];
+    	        const arr = res.data;
+                  // Pushes product components to an array passing in data as props
+                  for (let i = 0; i < arr.length; i++) {
+                    const newProduct = (<Product
+											product_id={arr[i]._id}
+											id={arr[i].id}
+											title={arr[i].title}
+											price={arr[i].price} 
+											category={arr[i].category}
+											description={arr[i].description}
+											image={arr[i].image}
+											rating={arr[i].rating}
+                  />);
 
                         // Pushes each product into allProducts array and displayedProducts arr
-                        newProducts.push(newProduct);
-                        // allProducts.push(newProducts);
-                    }
-                    return newProducts;
-                });
-            })
+                    newProducts.push(newProduct);
+        					}
+                  return newProducts;
+              });
+          })
 
             // Catches any errors during our get request and displays a message box with the error
-            .catch(e => {
-                alert(e);
-            })
+					.catch(e => {
+						alert(e);
+					})
     };
 
     // Returns a styled div containing the rendered products
@@ -113,13 +114,13 @@ const Marketplace = () => {
         <div className='marketContainer'>
 					<nav>
 							<button value="Men" 
-							onClick={()=> setValue('men\'s clothing')}>Men</button> 
+								onClick={()=> setValue('men\'s clothing')}>Men</button> 
 							<button value="Women" 
-							onClick={() => {setValue('women\'s clothing')}}>Woman</button>					
-                            <button value="Jewelery" 
-							onClick={()=> {setValue('jewelery')}}> Jewelery </button>
+								onClick={() => {setValue('women\'s clothing')}}>Woman</button>					
+              <button value="Jewelery" 
+								onClick={()=> {setValue('jewelery')}}> Jewelery </button>
 							<button value="Electronics" 
-							onClick={()=> {setValue('electronics')}}>Electronics</button>
+								onClick={()=> {setValue('electronics')}}>Electronics</button>
 						
 					</nav>
 					<div className='product-display'>
@@ -129,21 +130,6 @@ const Marketplace = () => {
     );
 };
 
-
-// {/* <ul className='categories'>
-// <li><button onClick={getFiltered} className='mens'>
-// 	Men&apos;s
-// </button></li>
-// <li><button className='womens'>
-// 	Women&apos;s
-// </button></li>
-// <li><button className='jewlery'>
-// 	Jewlery
-// </button></li>
-// <li><button className='electronics'>
-// 	Electronics
-// </button></li>
-// </ul> */}
 
 // Exports the Marketplace function
 export default Marketplace;

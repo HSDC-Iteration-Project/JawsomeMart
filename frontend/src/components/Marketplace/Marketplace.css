@@ -23,6 +23,10 @@
     justify-content: center;
   }
 
+  .product-box h3 {
+    font-size: 1.5em;
+  }
+
   .product-box .image-container {
     height: 450px;
     display: flex;
@@ -41,7 +45,7 @@
 
   h3 {
     border: none;
-    padding: 15px;
+    padding: 20px;
     height: 70px;
   }
 
@@ -63,14 +67,24 @@
     cursor: pointer;
   }
 
-  .product-box .description-box {
-    border: none;
-    border-radius: 8px;
-    margin: 5px;
-  }
-
   .categories {
     list-style-type: none;
     display: flex;
     justify-content: space-around;
+  }
+
+  h3 .btn-secondary {
+    background:none;
+    color: rgb(0, 132, 255);
+    border:none;
+    margin:0;
+    padding:10px;
+  }
+
+  h3 .btn-secondary:hover {
+    background:none !important;
+    color: rgb(153, 0, 255);
+    border:none;
+    margin:0;
+    padding:10px;
   }
