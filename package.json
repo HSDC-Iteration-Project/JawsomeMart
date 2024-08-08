@@ -28,7 +28,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
