@@ -1,25 +1,24 @@
 // implement checkout using stripe
-const stripe = require('stripe')('sk_test_51Pkveg00Acuha2WoeGVdUASIrgy47JMZd0QcPJfUmistliQsw5NqqJOIVUc6VKnLoOHHgyFHzotazYMNGoO6aSU700AJgq0pfX'); // This is your test secret API key.
-const YOUR_DOMAIN = 'http://localhost:8080';
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); // This is your test secret API key.
+const YOUR_DOMAIN = 'http://localhost:3000';
 
 let checkoutController = {};
-console.log('inside checkout controller...')
 checkoutController.checkout = async (req, res, next) => {
     try {
         const session = await stripe.checkout.sessions.create({
             line_items: [
             {
                 // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                price: '3000',
+                price: 'price_1PlCRN2eZvKYlo2Cr2XW50h9',
                 quantity: 1,
             },
             ],
-            mode: 'payment', // specify mode
-            success_url: `${YOUR_DOMAIN}?success=true`,
-            cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+            mode: 'subscription', // specify mode
+            success_url: `${YOUR_DOMAIN}/success`,
+            cancel_url: `${YOUR_DOMAIN}/cart`,
         });
         
-        res.redirect(303, session.url);
+        res.redirect(303, session.url); // redirects user to stripe hosted payment page
         next();
     } catch(err) {
         return next({
