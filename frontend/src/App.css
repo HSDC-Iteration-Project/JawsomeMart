@@ -72,9 +72,9 @@ body.darkmode {
 }
 
 .appContainer {
-  margin: 0 auto; /* Center the container
+  margin: 0 auto; 
   padding-top: 30px;
-  box-sizing: border-box; /* Ensure padding and border are included in the total width and height */
+  box-sizing: border-box; 
 } 
 
 body.darkmode .product-display {

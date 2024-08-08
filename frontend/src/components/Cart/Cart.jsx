@@ -150,7 +150,7 @@ function Cart() {
             <button type="submit">Place Order</button>
 
             </form>
-          )}
+          }
         </div>
 
         <div className={styles.cart}>
