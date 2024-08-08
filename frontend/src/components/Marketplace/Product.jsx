@@ -10,18 +10,22 @@ import { Popover } from 'bootstrap';
  * a div to display the data
  */
 const Product = (props) => {
-  const objID = props.product_id;
-  document.querySelectorAll('[data-bs-toggle="popover"]').forEach((popover) => {
-    new Popover(popover);
-  });
 
-  // Function that allows users to add an item to their cart
-  const addProductToCart = () => {
-    // Calls imported function, passing in Object ID
-    cartService.add({ id: objID }).then(() => {
-      alert('Item added to cart!');
-    });
-  };
+    const objID = props.product_id;
+    document.querySelectorAll('[data-bs-toggle="popover"]')
+    .forEach(popover => {
+    new Popover(popover)
+  })
+
+    // Function that allows users to add an item to their cart
+    const addProductToCart = () => {
+
+        // Calls imported function, passing in Object ID
+        cartService.add({id: objID})
+            .then(() => {  
+                alert('Item added to cart!');
+            })
+    }
 
     // Returns a product div to be rendered in the marketplace
     return (
