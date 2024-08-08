@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Marketplace from './components/Marketplace/Marketplace';
 import Cart from './components/Cart/Cart';
-import Checkout from './components/Checkout/Checkout';
+import Success from './components/Checkout/Success';
 import SigninForm from './components/Home/SigninForm';
 import SignupForm from './components/Home/SignupForm';
 
@@ -16,8 +16,10 @@ export const AuthedUserContext = createContext(null);
 function App() {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(authService.getUser()); // look for an active user
+  const ThemeContext = createContext();
+  // const [isDarkMode, setIsDarkMode] = useState(false)
 
+  const [user, setUser] = useState(authService.getUser()); // look for an active user
   const handleSignout = () => {
     authService.signout();
     setUser(null);
@@ -32,17 +34,18 @@ function App() {
 
   return (
     <>
+
       <AuthedUserContext.Provider value={user}>
-        {/* <Navbar handleSignout={handleSignout}/> */}
-        <Navbar handleSignout={handleSignout} />
-        <div className='appContainer'>
+        <ThemeContext.Provider>
+        <Navbar handleSignout={handleSignout}/>
+        <div className="appContainer">
           <Routes>
             {user ? (
               <>
                 <Route path='/marketplace' element={<Marketplace />} />
-                <Route path='/cart' element={<Cart />} />
-                <Route path='/checkout' element={<Checkout />} />
-              </>
+                <Route path='/cart' element={<Cart/>} />
+                <Route path='/success' element={<Success />} />
+              </> 
             ) : (
               <>
                 <Route path='/' element={<SigninForm setUser={setUser} />} />
@@ -54,6 +57,7 @@ function App() {
             )}
           </Routes>
         </div>
+        </ThemeContext.Provider>
       </AuthedUserContext.Provider>
     </>
   );

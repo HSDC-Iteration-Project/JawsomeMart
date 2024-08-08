@@ -21,14 +21,14 @@ const Marketplace = () => {
   const [displayedProducts, setProducts] = useState([]);
   const [value, setValue] = useState('');
 
-  // Calls the getComponents function so we can render the products
-  useEffect(() => {
-    console.log('hit');
-    getComponents();
-  }, []);
-
   //holds category type
-  useEffect(() => getSpecificComponents(value), [value]);
+  useEffect(() => {
+    if (value) {
+      getSpecificComponents(value);
+    } else {
+      getComponents();
+    }
+  }, [value]);
   // Creates a new array to hold all products returned from db
   // const allProducts = [];
 
@@ -60,13 +60,14 @@ const Marketplace = () => {
           newProducts.push(newProduct);
           // allProducts.push(newProducts);
         }
+        console.log('new products get specific', newProducts);
         return newProducts;
       });
     });
   };
   // Function that sends a "GET" request to the DB to fetch product data
-  const getComponents = (value) => {
-    console.log('value', value);
+  const getComponents = () => {
+    // console.log('value getcomponents', value);
     // Sends a "GET" request for products stored in db
     axios
       .get('/api/products')
@@ -93,7 +94,6 @@ const Marketplace = () => {
 
             // Pushes each product into allProducts array and displayedProducts arr
             newProducts.push(newProduct);
-            // allProducts.push(newProducts);
           }
           return newProducts;
         });
@@ -143,21 +143,6 @@ const Marketplace = () => {
     </div>
   );
 };
-
-// {/* <ul className='categories'>
-// <li><button onClick={getFiltered} className='mens'>
-// 	Men&apos;s
-// </button></li>
-// <li><button className='womens'>
-// 	Women&apos;s
-// </button></li>
-// <li><button className='jewlery'>
-// 	Jewlery
-// </button></li>
-// <li><button className='electronics'>
-// 	Electronics
-// </button></li>
-// </ul> */}
 
 // Exports the Marketplace function
 export default Marketplace;

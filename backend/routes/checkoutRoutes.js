@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {checkout} = require('../controllers/checkoutController');
 
-router.post('/create-checkout-session', checkout, (req,res) => {
+router.post('/', checkout, (req, res) => {
     res.status(200);
 })
 

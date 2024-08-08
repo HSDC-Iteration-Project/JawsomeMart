@@ -20,6 +20,8 @@ productController.getCategory = async (req, res, next) => {
     console.log("req.params", req.params.category)
     const products = await Product.find({category: req.params.category});
     res.json(products);
+    // console.log(res.locals.products);
+    // res.json(products);
   } catch (err) {
     return next({
       message: 'error in getProducts: ' + err,
