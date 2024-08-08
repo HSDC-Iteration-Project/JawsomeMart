@@ -11,7 +11,6 @@ const checkoutRoutes = require('./routes/checkoutRoutes.js');
 
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); // This is your test secret API key.
 
-
 db();
 app.use(express.static('public'));
 app.use(express.json());
@@ -27,7 +26,7 @@ app.use((req, res) =>
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
-    status: 500,
+    status: 400,
     message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
