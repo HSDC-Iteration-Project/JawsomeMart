@@ -7,7 +7,7 @@ router.get('/products', getProducts,(req,res)=>{
 })
 
 router.get('/products/:category', getCategory, (req, res)=>{
-  return res.status(200).json(res.locals);
+  return res.status(200).json(res.locals.products);
 })
 
 
