@@ -1,5 +1,5 @@
 // implement checkout using stripe
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc'); // This is your test secret API key.
+const stripe = require('stripe')('sk_test_51Pkveg00Acuha2WoeGVdUASIrgy47JMZd0QcPJfUmistliQsw5NqqJOIVUc6VKnLoOHHgyFHzotazYMNGoO6aSU700AJgq0pfX'); // This is Peter's test secret API key.
 const YOUR_DOMAIN = 'http://localhost:3000';
 
 let checkoutController = {};
@@ -12,7 +12,7 @@ checkoutController.createPrice = async (req, res, next) => {
             description: `Thank you for purchasing ${req.query.numCartItems} of our goodies!`,
           }).then(product => {
             stripe.prices.create({
-              unit_amount: req.query.cartTotal * 100,
+              unit_amount: Math.trunc(req.query.cartTotal * 100),
               currency: 'usd',
               product: product.id
             }).then(price => {

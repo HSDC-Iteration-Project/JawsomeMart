@@ -30,14 +30,14 @@ const Product = (props) => {
     return (
         <div className="product-box">
 
-            <h3>
+            <h3 style = {{"margin-bottom":"20px"}}>
                 {props.title}   
                 <button type="button" className="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content={props.description}>
                 &#9432;
             </button>
             </h3>
            
-            <div className="image-container">            
+            <div className="image-container" style = {{"margin-bottom":"-7px"}}>            
                 <img src={props.image}/>
             </div>
 
