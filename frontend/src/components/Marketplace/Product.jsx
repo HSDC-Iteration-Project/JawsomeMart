@@ -42,17 +42,13 @@ const Product = (props) => {
                 <img src={props.image}/>
             </div>
 
+      <h4>
+        ${props.price} USD
+        <button onClick={addProductToCart}>Add to Cart</button>
+        {/* Item Category: { props.category } */}
+      </h4>
 
-            <h4>
-                ${props.price.toFixed(2)} USD
-                <button onClick={ addProductToCart }>
-                    Add to Cart
-                </button>
-                {/* Item Category: { props.category } */}
-            </h4>
-
-            {/* <div className="description-box">
-
+      {/* <div className="description-box">
                 {props.description}
             </div> */}
     </div>
