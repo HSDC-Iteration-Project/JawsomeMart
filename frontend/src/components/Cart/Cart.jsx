@@ -66,7 +66,7 @@ function Cart() {
             <h2>Order Total:</h2>
             <h2>${(cartTotal * 1.05).toFixed(2)}</h2>
             <p>Items({cart.length})</p>
-            <p>${cartTotal}</p>
+            <p>${cartTotal.toFixed(2)}</p>
             <p>Estimated Tax</p>
             <p>${(cartTotal * 0.05).toFixed(2)}</p>
           </div>
